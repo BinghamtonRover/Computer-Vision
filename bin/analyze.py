@@ -15,5 +15,5 @@ def main():
     print("Error: Could not detect mallet")
     return
 
-
-main()
+if __name__ == "__main__":
+  main()
