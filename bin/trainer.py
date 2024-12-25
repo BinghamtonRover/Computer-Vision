@@ -23,9 +23,9 @@ class Trainer:
 
 	def train_model(self):
 		# Load a model
+		# Models available are: yolo11n, yolov11s.pt, yolov11m.pt, yolov11l.pt, yolov11x.pt
 		self.model = YOLO("yolo11n.pt")  # load a pretrained model (recommended for training)
-		results = self.model.train(data="C:\Scripts\MarsRover\Computer-Vision\BURT-Test-1\data.yaml", epochs = 100, imgsz = 64, auto_augment = "randaugment", crop_fraction=0.5,
-				   degrees = 90, shear = 90)
+		results = self.model.train(data="C:\Scripts\MarsRover\Computer-Vision\BURT-Test-1\data.yaml", epochs = 75, imgsz = 256,  auto_augment = "randaugment", crop_fraction=0.5, degrees = 90, shear = 90)
 		print(results)
 
 	def validate_model(self):
