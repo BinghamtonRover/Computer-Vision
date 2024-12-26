@@ -3,19 +3,15 @@ from ultralytics import YOLO
 
 class ImageAnalyzer:
   def __init__(self):
-    self.model = YOLO("trained-model.pt")
-                
-  def has_mallet(self, frame: cv2.Mat, confidence = 0.5) -> bool:
-    # TODO: Check for mallets
-    results = self.model(frame)
-    for result in results:
-      result.show()
-      
-      json = result.summary()
-      print(json)
-      if len(json) == 0: return False
+    self.model = YOLO("trained-model.pt", verbose=False)
 
-      if json[0]['name'] == "mallet" and json[0]['confidence'] > confidence:
-        return True
-      
-    return False
+  def has_mallet(self, frame: cv2.Mat, confidence = 0.5) -> bool:
+    results = self.model.predict(frame, stream=True, verbose=False)
+    for result in results:
+      json = result.summary()
+      if not json: return False
+      object = json[0]
+      is_mallet = object['name'] == "mallet" and object['confidence'] > confidence
+      if is_mallet: return True
+    else:
+      return False
