@@ -16,9 +16,10 @@ def test():
     print(f"!filename is:{filename}")     """             # chair_yes.jpg --> chair_yes, jpg
     background, has_mallet = filename.split("_")  # chair_yes --> chair, yes
     has_mallet = has_mallet == "yes"              # yes --> True
-    result = analyzer.has_mallet(f"test_images/{file}")
+    frame = cv2.imread(f"test_images/{file}")
+    result = analyzer.has_mallet(frame)
     if result == has_mallet: 
-      print(f"{background} image passed")
+      print(f"{background} image passed -- {result}")
     else: 
       print(f"{background} image failed: Analyzer detected {result} instead of {has_mallet}")
 

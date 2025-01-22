@@ -6,6 +6,7 @@ class ImageAnalyzer:
     self.model = YOLO("trained-model.pt", verbose=False)
 
   def has_mallet(self, frame: cv2.Mat, confidence = 0.5) -> bool:
+    print(type(frame))
     results = self.model.predict(frame, stream=True, verbose=False)
     for result in results:
       json = result.summary()
