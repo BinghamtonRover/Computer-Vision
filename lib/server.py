@@ -21,3 +21,4 @@ class AnalyzerServer:
 # for testing
 if __name__ == "__main__":
     server = AnalyzerServer();
+    server.run()
