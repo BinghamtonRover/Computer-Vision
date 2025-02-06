@@ -26,8 +26,13 @@ class AnalyzerServer:
             
 		except Exception as e:
 			self.logger.error(f"error: {str(e)}")
+		
+		finally:
 			await self.cleanup()
-			raise
+
+
+	def cleanup(self):
+		self.socket.close();
   
 async def main():
 	port = 8001
